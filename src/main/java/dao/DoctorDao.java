@@ -6,12 +6,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Doctor {
+public class DoctorDao {
 
-    public static void addDoctor(String name, String surname, String specialization)
+    public static void addDoctor(String name, String surname, String specialization, int age)
             throws SQLException {
 
-        String sql = "INSERT INTO doctor(name, surname, specialization) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO doctor(name, surname, specialization,age) VALUES (?, ?, ?,?)";
 
         try (Connection con = Db.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -19,6 +19,7 @@ public class Doctor {
             ps.setString(1, name);
             ps.setString(2, surname);
             ps.setString(3, specialization);
+            ps.setInt(4,age);
 
             ps.executeUpdate();
         }

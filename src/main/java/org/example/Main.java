@@ -1,11 +1,10 @@
 package org.example;
 
-import dao.Patient;
-import dao.Doctor;
-import dao.Hospital;
+import dao.PatientDao;
+import dao.DoctorDao;
+import dao.HospitalDao;
 
 import java.sql.SQLException;
-import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Scanner;
 
@@ -47,11 +46,14 @@ public class Main {
                         System.out.print("Gender: ");
                         String gender = sc.nextLine();
 
-                        Patient.addPatient(name, surname, age, gender);
+                        System.out.print("Email: ");
+                        String email = sc.nextLine();
+
+                        PatientDao.addPatient(name, surname, age, gender,email);
                         System.out.println("Patient added");
                     }
                     case 2 -> {
-                        List<String> patients = Patient.getAllPatients();
+                        List<String> patients = PatientDao.getAllPatients();
                         for (String p : patients) {
                             System.out.println(p);
                         }
@@ -64,7 +66,7 @@ public class Main {
                         System.out.print("New age: ");
                         int age = sc.nextInt();
 
-                        Patient.updatePatient(id, age);
+                        PatientDao.updatePatient(id, age);
                         System.out.println("Patient updated");
                     }
 
@@ -72,7 +74,7 @@ public class Main {
                         System.out.print("Patient ID: ");
                         int id = sc.nextInt();
 
-                        Patient.deletePatient(id);
+                        PatientDao.deletePatient(id);
                         System.out.println("Patient deleted");
                     }
 
@@ -86,11 +88,15 @@ public class Main {
                         System.out.print("Specialization: ");
                         String spec = sc.nextLine();
 
-                        Doctor.addDoctor(name, surname, spec);
+                        System.out.print("Age: ");
+                        int age = sc.nextInt();
+                        sc.nextLine();
+
+                        DoctorDao.addDoctor(name, surname, spec,age);
                         System.out.println("Doctor added");
                     }
                     case 6 -> {
-                        List<String> doctors = Doctor.getAllDoctors();
+                        List<String> doctors = DoctorDao.getAllDoctors();
                         for (String d : doctors) {
                             System.out.println(d);
                         }
@@ -103,7 +109,7 @@ public class Main {
                         System.out.print("Address: ");
                         String address = sc.nextLine();
 
-                        Hospital.addHospital(name, address);
+                        HospitalDao.addHospital(name, address);
                         System.out.println("Hospital added");
                     }
                     case 0 -> {

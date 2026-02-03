@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class Hospital {
+public class HospitalDao {
 
     public static void addHospital(String name, String address)
             throws SQLException {
